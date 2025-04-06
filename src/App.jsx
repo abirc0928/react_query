@@ -5,6 +5,7 @@ import FetchOld from "./components/pages/FetchOld";
 import MainLayouts from "./components/Layouts/MainLayouts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import FetchRQIndivedual from "./components/UI/FetchRQIndivedual";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/rq",
         element: <FetchRQ />,
+      },
+      {
+        path: "/rq/:id",
+        element: <FetchRQIndivedual />,
       },
     ],
   },

@@ -1,20 +1,28 @@
 import React from 'react'
 import { fetchPostsReactQuery } from '../../Api/Api'
 import { useQuery } from '@tanstack/react-query'
+import { NavLink } from 'react-router-dom';
 
 const FetchRQ = () => {
 
- 
+
 
   const { data, isError, isLoading, error } = useQuery({
     queryKey: ['posts'],
     queryFn: fetchPostsReactQuery,
-    staleTime: 10000
+
+    // gcTime: 5000,
+
+    // staleTime: 10000,
+
+    // refetchInterval: 1000,
+    // refetchIntervalInBackground: true,
+
   });
 
 
-  if(isLoading) return <h1>Loading...</h1>
-  if(isError) return <h1>{error}</h1>
+  if (isLoading) return <h1>Loading...</h1>
+  if (isError) return <h1>{error}</h1>
 
   return (
     <div className=' text-2xl  mx-auto w-[1200px] p-5'>
@@ -23,7 +31,9 @@ const FetchRQ = () => {
 
         {
           data?.map((post) => (
-            <li className='p-2 bg-blue-200 my-2'>{post.id}. {post.title}</li>
+            <NavLink to={`/rq/${post.id}`}>
+              <li className='p-2 bg-blue-200 my-2'>{post.id}. {post.title}</li>
+            </NavLink>
           ))
         }
       </ul>

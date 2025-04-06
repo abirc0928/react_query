@@ -23,7 +23,7 @@ const FetchOld = () => {
       <ul>
 
         {
-          posts.map((post) => (
+          posts?.map((post) => (
             <li className='p-2 bg-blue-200 my-2'>{post.id}. {post.title}</li>
           ))
         }

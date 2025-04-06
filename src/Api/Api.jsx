@@ -13,7 +13,17 @@ export const fetchPosts = () => {
 // use react query
 export const fetchPostsReactQuery = async () => {
     try {
-        const res = await api.get("/posts");
+        const res = await api.get("/posts?_limit=5");
+        return res.status === 200 ? res.data : [];
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// use react query
+export const fetchIndevidualPost = async (id) => {
+    try {
+        const res = await api.get(`/posts/${id}`);
         return res.status === 200 ? res.data : [];
     } catch (error) {
         console.log(error);
