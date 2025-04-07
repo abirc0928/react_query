@@ -11,9 +11,9 @@ export const fetchPosts = () => {
 }
 
 // use react query
-export const fetchPostsReactQuery = async () => {
+export const fetchPostsReactQuery = async (page) => {
     try {
-        const res = await api.get("/posts?_limit=5");
+        const res = await api.get(`/posts?_start=${page}&_limit=5`);
         return res.status === 200 ? res.data : [];
     } catch (error) {
         console.log(error);

@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { fetchPostsReactQuery } from '../../Api/Api'
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { NavLink } from 'react-router-dom';
 
 const FetchRQ = () => {
 
-
+  const [pageNumber, setPageNumber] = useState(0)
 
   const { data, isError, isLoading, error } = useQuery({
-    queryKey: ['posts'],
-    queryFn: fetchPostsReactQuery,
+    queryKey: ['posts', pageNumber],
+    queryFn: () => fetchPostsReactQuery(pageNumber),
 
     // gcTime: 5000,
 
@@ -17,6 +17,8 @@ const FetchRQ = () => {
 
     // refetchInterval: 1000,
     // refetchIntervalInBackground: true,
+
+    placeholderData: keepPreviousData,
 
   });
 
@@ -37,6 +39,18 @@ const FetchRQ = () => {
           ))
         }
       </ul>
+      <div className='flex gap-5 items-center justify-end mt-4'>
+        <button
+          disabled={pageNumber === 0}
+          onClick={() => setPageNumber(pageNumber - 5)}
+          className={`bg-green-400 py-1 px-4 rounded ${pageNumber === 0 ? 'text-gray-300 ' : 'text-white'} cursor-pointer`}>
+          PREV
+        </button>
+
+        <h2>{(pageNumber / 5) + 1}</h2>
+
+        <button onClick={() => setPageNumber(pageNumber + 5)} className='bg-green-400 py-1 px-4 rounded text-white cursor-pointer'>NEXT</button>
+      </div>
     </div>
   )
 }
