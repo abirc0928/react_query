@@ -2,10 +2,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import FetchRQ from "./components/pages/FetchRQ";
 import Home from "./components/pages/Home";
 import FetchOld from "./components/pages/FetchOld";
+
 import MainLayouts from "./components/Layouts/MainLayouts";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import FetchRQIndivedual from "./components/UI/FetchRQIndivedual";
+import { InfiniteScrolling } from "./components/pages/InfiniteScrolling";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/rq/:id",
         element: <FetchRQIndivedual />,
+      },
+      {
+        path: "/infinite",
+        element: <InfiniteScrolling />,
       },
     ],
   },

@@ -1,6 +1,7 @@
 import React from 'react'
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 const Header = () => {
+ 
     return (
         <header>
             <div className='flex justify-between p-5 container mx-auto'>
@@ -15,7 +16,9 @@ const Header = () => {
                     <li className='font-semibold'>
                         <NavLink to="/rq"> FetchRQ </NavLink>
                     </li>
-                  
+                    <li className='font-semibold'>
+                        <NavLink to="/infinite"> InfiniteScrolling </NavLink>
+                    </li>
                 </ul>
             </div>
         </header>
